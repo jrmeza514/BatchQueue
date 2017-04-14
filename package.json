@@ -1,0 +1,21 @@
+{
+  "name": "batch_queue",
+  "version": "0.0.1",
+  "description": "System for requesting batches to be pulled by Backroom",
+  "main": "index.js",
+  "dependencies": {
+    "browser-sync": "^2.18.8",
+    "express": "^4.15.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-jade": "^1.1.0",
+    "gulp-sass": "^3.1.0",
+    "socket.io": "^1.7.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Batch Queue</title>
+    <link rel="stylesheet" href="/css/main.css" charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.js"></script>
+    <script src="js/client.js" async></script>
+  </head>
+  <body>
+    <header class="header">
+      <h3>Batch Queue</h3>
+    </header>
+    <div id="batchList" class="batchList">
+      <div class="batch">
+        <div class="batchName">ITM-FURN-0</div>
+        <div class="batchStats">
+          <div class="batchDPCIS">DPCIs: 5</div>
+          <div class="batchEaches">Eaches: 20</div>
+        </div>
+        <div class="batchOwner">Owner: Juan Meza</div>
+        <div class="controls">
+          <div class="completeButton">Complete</div>
+          <div class="cancelButton">Cancel</div>
+        </div>
+      </div>
+      <div class="batch">
+        <div class="batchName">ITM-BB01-0</div>
+        <div class="batchStats">
+          <div class="batchDPCIS">DPCIs: 5</div>
+          <div class="batchEaches">Eaches: 20</div>
+        </div>
+        <div class="batchOwner">Owner: Juan Meza</div>
+        <div class="controls">
+          <div class="completeButton">Complete</div>
+          <div class="cancelButton">Cancel</div>
+        </div>
+      </div>
+    </div>
+    <div id="newBatchButton"></div>
+    <div id="newBatchForm">
+      <div class="formContainer">
+        <div class="header">Request New Batch</div>
+        <input name="batchName" placeholder="Batch Name">
+        <input name="DPCIS" placeholder="DPCIs">
+        <input name="eaches" placeholder="Eaches">
+        <input name="owner" placeholder="Batch Owner">
+        <div class="controls">
+          <div class="cancel">Cancel</div>
+          <div class="submit">Submit</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
