@@ -62,6 +62,30 @@ let BatchQueue = (() => {
     BATCH_LIST.appendChild(createBatchUI(batchOptions));
   };
 
+  SOCKET_CALLBACKS.onBatchComplete = batchOptions => {
+    for (var i = 0; i < batchQueueBuffer.length; i++) {
+      let batch = batchQueueBuffer[i];
+      if (JSON.stringify(batchOptions) == JSON.stringify(batch)) {
+        let batchElems = BATCH_LIST.getElementsByClassName('batch');
+        batchElems[i].remove();
+        batchQueueBuffer.splice(i, 1);
+        break;
+      }
+    }
+  };
+
+  SOCKET_CALLBACKS.onBatchCancelled = batchOptions => {
+    for (var i = 0; i < batchQueueBuffer.length; i++) {
+      let batch = batchQueueBuffer[i];
+      if (JSON.stringify(batchOptions) == JSON.stringify(batch)) {
+        let batchElems = BATCH_LIST.getElementsByClassName('batch');
+        batchElems[i].remove();
+        batchQueueBuffer.splice(i, 1);
+        break;
+      }
+    }
+  };
+
   /*
     Create the Click listener if user decides to connect
   */
@@ -82,6 +106,8 @@ let BatchQueue = (() => {
     */
     socket.on('connected', SOCKET_CALLBACKS.onConnected);
     socket.on('newBatch', SOCKET_CALLBACKS.onBatchAdded);
+    socket.on('batchComplete', SOCKET_CALLBACKS.onBatchComplete);
+    socket.on('batchCancelled', SOCKET_CALLBACKS.onBatchCancelled);
   };
 
   let addBatch = () => {
@@ -98,6 +124,23 @@ let BatchQueue = (() => {
     if (!areYouSure) return;
 
     socket.emit('newBatch', values);
+  };
+
+  let cancelBatch = batchOptions => {
+    if (!socket) return;
+    let areYouSure = confirm("Are you sure you want to cancel " + batchOptions.name + "?");
+
+    if (!areYouSure) return;
+
+    socket.emit('batchCancelled', batchOptions);
+  };
+
+  let completeBatch = batchOptions => {
+    if (!socket) return;
+    let areYouSure = confirm("Are you sure you've completed " + batchOptions.name + "?");
+    if (!areYouSure) return;
+
+    socket.emit('batchComplete', batchOptions);
   };
 
   submitNewBatchButton.addEventListener('click', e => {
@@ -146,6 +189,16 @@ let BatchQueue = (() => {
     let cancelButton = document.createElement("div");
     cancelButton.className = "cancelButton";
     cancelButton.innerText = "Cancel";
+
+    completeButton.addEventListener('click', e => {
+      completeBatch(batchOptions);
+      console.log("s");
+    }, false);
+
+    cancelButton.addEventListener('click', e => {
+      cancelBatch(batchOptions);
+      console.log("sd");
+    }, false);
 
     controls.appendChild(cancelButton);
     controls.appendChild(completeButton);

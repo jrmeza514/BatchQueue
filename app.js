@@ -23,10 +23,24 @@ socket.on('connection', (client) => {
   });
 
   client.on('batchComplete', (batchOptions) => {
+    for (var i = 0; i < batchQueue.length; i++) {
+      let batch = batchQueue[i];
+      if (JSON.stringify(batchOptions) == JSON.stringify(batch)) {
+        batchQueue.splice( i , 1 );
+        break;
+      }
+    }
     client.emit('batchComplete', batchOptions);
     client.broadcast.emit('batchComplete', batchOptions);
   });
   client.on('batchCancelled', (batchOptions) => {
+    for (var i = 0; i < batchQueue.length; i++) {
+      let batch = batchQueue[i];
+      if (JSON.stringify(batchOptions) == JSON.stringify(batch)) {
+        batchQueue.splice( i , 1 );
+        break;
+      }
+    }
     client.emit('batchCancelled', batchOptions);
     client.broadcast.emit('batchCancelled', batchOptions);
   });
