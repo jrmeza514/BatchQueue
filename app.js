@@ -10,7 +10,7 @@ server.listen(PORT);
 
 app.use( express.static( __dirname + "/dist/") );
 
-let batchQueue = [{name: "ITM-BB01", DPCIS: 5, eaches: 17, owner: "Juan Meza"}];
+let batchQueue = [];
 const maxBatches = 20;
 const maxBatchAge = 2000;
 
