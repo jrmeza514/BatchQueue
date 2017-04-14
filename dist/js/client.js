@@ -31,13 +31,15 @@ let BatchQueue = (() => {
   */
   const SERVER = {
     connected: false,
-    url: window.location.href
+    url: window.location.hostname
   };
 
+  console.log(SERVER.url);
   // Workaround only for the purpose of browser-sync
-  if (SERVER.url.indexOf("localhost")) {
+  if (SERVER.url.indexOf("localhost") > 1) {
     SERVER.url = "http://localhost:8080";
   }
+  console.log(SERVER.url);
 
   // socket
   let socket = null;
@@ -100,7 +102,8 @@ let BatchQueue = (() => {
     /*
       Create a new socket to connect to the server
     */
-    socket = io.connect(SERVER.url);
+    console.log(SERVER.url);
+    socket = io.connect("http://" + SERVER.url + ":8080");
     /*
       Add the event listeners to the cosket
     */

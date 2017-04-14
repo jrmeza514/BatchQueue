@@ -6,6 +6,7 @@ const server = http.createServer(app);
 const socket = io(server);
 
 const PORT = process.env.PORT || 8080;
+server.listen(PORT);
 
 app.use( express.static( __dirname + "/dist/") );
 
@@ -46,6 +47,3 @@ socket.on('connection', (client) => {
   });
 
 });
-
-
-server.listen(PORT);
