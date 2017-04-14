@@ -5,7 +5,8 @@ body{
   margin: 0;
   padding: 0;
   font-family: Arial;
-  background-color: #ecf0f1
+  background-color: #ecf0f1;
+  overflow-x: hidden;
 }
 
 #newBatchButton {
@@ -29,7 +30,7 @@ body{
   height: 100vh;
   background-color: rgba(0,0,0,0.8);
   top: 0;
-  transition: left 0.2s ease-in;
+  transition: left 0.2s ease-out;
   left: 100%;
 
   .formContainer{
@@ -98,6 +99,7 @@ body{
 
 .batchList{
   display: flex;
+  flex-wrap: wrap;
 }
 .batch{
   background-color: white;
