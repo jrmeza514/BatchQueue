@@ -6,7 +6,7 @@ body {
   overflow-x: hidden; }
 
 #newBatchButton {
-  position: absolute;
+  position: fixed;
   height: 3.5em;
   width: 3.5em;
   background-color: #e74c3c;
@@ -17,10 +17,11 @@ body {
   background-image: url("../img/add_white.png");
   background-size: 50%;
   background-repeat: no-repeat;
-  background-position: center; }
+  background-position: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
 #newBatchForm {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.8);
@@ -32,11 +33,11 @@ body {
     width: 90%;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 20%; }
+    margin-top: 5%; }
     #newBatchForm .formContainer input {
       width: 90%;
       margin-left: 5%;
-      font-size: 2em;
+      font-size: 1em;
       margin: 10px;
       border: none;
       border-bottom: 1px solid #bdc3c7;
@@ -76,13 +77,11 @@ body {
   text-align: center;
   color: #ecf0f1; }
 
-.batchList {
-  display: flex;
-  flex-wrap: wrap; }
-
 .batch {
   background-color: white;
-  flex: 1;
+  display: block;
+  margin-right: 5%;
+  margin-left: 5%;
   margin: 5px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
   .batch .batchName {
